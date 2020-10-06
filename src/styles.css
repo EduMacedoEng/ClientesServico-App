@@ -545,9 +545,10 @@ pre code {
   width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
 }
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
