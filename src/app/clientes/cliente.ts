@@ -3,5 +3,4 @@ export class Cliente {
     nome: string;
     cpf: string;
     dataCadastro: string;
-    listaClientes: Array<string>;
 }
