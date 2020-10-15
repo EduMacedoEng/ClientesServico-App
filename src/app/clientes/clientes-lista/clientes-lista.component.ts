@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 export class ClientesListaComponent implements OnInit {
 
   clientes: Cliente[];
-  //nomeCliente: string;
+  clienteSelecionado: Cliente;
+  mensagemSucesso: string;
+  mensagemErro: string;
   
   constructor(private service: ClientesService, private router: Router) {
   }
@@ -21,8 +23,6 @@ export class ClientesListaComponent implements OnInit {
       .getClientes()
       .subscribe(resposta => {
         this.clientes = resposta;
-        //this.nomeCliente = resposta[Math.floor((Math.random() * this.clientes.length))].nome;
-        //console.log(this.nomeCliente)
       });
     ;
   }
@@ -31,4 +31,16 @@ export class ClientesListaComponent implements OnInit {
     this.router.navigate(['/clientes-form'])
   }
 
+  preparaDelecao(cliente: Cliente) {
+    this.clienteSelecionado = cliente;
+  }
+
+  deletarCliente(){
+    this.service
+      .deletar(this.clienteSelecionado)
+      .subscribe(
+        response => {this.mensagemSucesso = 'Cliente deletado com sucesso !', this.ngOnInit()},
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente !'
+      )
+  }
 }
